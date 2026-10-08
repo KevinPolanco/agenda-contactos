@@ -2,9 +2,9 @@ package cl.duoc.agenda;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
+import java.io.IOException;
 
 public class App extends Application {
 
@@ -14,11 +14,14 @@ public class App extends Application {
     }
 
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage) throws IOException {
         System.out.println("2. start()");
-        StackPane raiz = new StackPane(new Label("Agenda de Contactos"));
+
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("principal.fxml"));
+        Scene escena = new Scene(loader.load(), 640, 400);
+
         stage.setTitle("Agenda de Contactos");
-        stage.setScene(new Scene(raiz, 640, 400));
+        stage.setScene(escena);
         stage.show();
     }
 
