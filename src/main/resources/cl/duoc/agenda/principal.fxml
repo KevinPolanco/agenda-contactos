@@ -20,7 +20,10 @@
     <TextField fx:id="txtCorreo" promptText="Correo"/>
     <TextField fx:id="txtTelefono" promptText="Telefono"/>
 
-    <Button text="Agregar" onAction="#onAgregar" />
+    <HBox spacing="10">
+        <Button text="Agregar" onAction="#onAgregar"/>
+        <Button text="Limpiar" onAction="#onLimpiar"/>
+    </HBox>
 
     <Label fx:id="lblMensaje"/>
 </VBox>
