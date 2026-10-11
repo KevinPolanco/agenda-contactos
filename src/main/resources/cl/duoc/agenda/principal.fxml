@@ -6,7 +6,7 @@
 
 <VBox spacing="10" xmlns="http://javafx.com/javafx/21"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="cl.duoc.agenda.PrincipalController">
+      fx:controller="cl.duoc.agenda.controller.PrincipalController">
 
     <padding>
         <Insets top="20" right="20" bottom="20" left="20"/>

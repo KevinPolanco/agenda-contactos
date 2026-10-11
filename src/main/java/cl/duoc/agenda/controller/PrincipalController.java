@@ -1,4 +1,4 @@
-package cl.duoc.agenda;
+package cl.duoc.agenda.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
