@@ -26,6 +26,7 @@
     </HBox>
 
     <Label fx:id="lblMensaje"/>
+    <Label fx:id="lblTotal"/>
 
     <TableView fx:id="tablaContactos" VBox.vgrow="ALWAYS">
         <columns>

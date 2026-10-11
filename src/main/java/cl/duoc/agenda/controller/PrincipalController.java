@@ -1,7 +1,6 @@
 package cl.duoc.agenda.controller;
 
 import cl.duoc.agenda.model.Contacto;
-import javafx.beans.Observable;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -20,7 +19,9 @@ public class PrincipalController {
     @FXML private TextField txtNombre;
     @FXML private TextField txtCorreo;
     @FXML private TextField txtTelefono;
+
     @FXML private Label lblMensaje;
+    @FXML private Label lblTotal;
 
     @FXML private TableView<Contacto> tablaContactos;
     @FXML private TableColumn<Contacto , Integer> colId;
@@ -41,12 +42,17 @@ public class PrincipalController {
         colTelefono.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getTelefono()));
 
         tablaContactos.setItems(contactos);
+        actualizarTotal();
+    }
+
+    private void actualizarTotal() {
+        lblTotal.setText("Total de contactos: " + contactos.size());
     }
 
     @FXML
     private void onAgregar() {
         String nombre = txtNombre.getText().trim();
-        String correo = txtCorreo.getText().trim();
+        String correo = txtCorreo.getText().trim().toLowerCase();
         String telefono = txtTelefono.getText().trim();
 
         String error = validar(nombre, correo, telefono);
@@ -57,6 +63,7 @@ public class PrincipalController {
 
         Contacto contacto = new Contacto(siguienteId++, nombre, correo, telefono);
         contactos.add(contacto);
+        actualizarTotal();
 
         limpiarCampos();
         mostrarExito("Contacto válido: " + nombre + " | " + correo + " | " + telefono);
@@ -88,6 +95,10 @@ public class PrincipalController {
             txtCorreo.requestFocus();
             return "El correo no tiene un formato válido";
         }
+        if (existeCorreo(correo)) {
+            txtCorreo.requestFocus();
+            return "Ya existe un contacto con el correo " + correo;
+        }
         if (telefono.isEmpty()) {
             txtTelefono.requestFocus();
             return "El teléfono es obligatorio";
@@ -97,6 +108,21 @@ public class PrincipalController {
             return "El teléfono debe tener entre 8 y 12 dígitos";
         }
         return null;
+    }
+
+
+//    private boolean existeCorreo(String correo) {
+//        return contactos.stream()
+//                .anyMatch(c -> c.getCorreo().equalsIgnoreCase(correo));
+//    }
+
+    private boolean existeCorreo(String correo) {
+        for (Contacto contacto : contactos) {
+            if (correo.equals(contacto.getCorreo())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void mostrarError(String texto) {
