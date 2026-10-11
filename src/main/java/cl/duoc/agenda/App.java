@@ -18,7 +18,7 @@ public class App extends Application {
         System.out.println("2. start()");
 
         FXMLLoader loader = new FXMLLoader(App.class.getResource("principal.fxml"));
-        Scene escena = new Scene(loader.load(), 640, 400);
+        Scene escena = new Scene(loader.load(), 720, 560);
 
         stage.setTitle("Agenda de Contactos");
         stage.setScene(escena);

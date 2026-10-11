@@ -26,4 +26,13 @@
     </HBox>
 
     <Label fx:id="lblMensaje"/>
+
+    <TableView fx:id="tablaContactos" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colId" text="ID" prefWidth="50" />
+            <TableColumn fx:id="colNombre" text="Nombre" prefWidth="180"/>
+            <TableColumn fx:id="colCorreo" text="Correo" prefWidth="220"/>
+            <TableColumn fx:id="colTelefono" text="Teléfono" prefWidth="140"/>
+        </columns>
+    </TableView>
 </VBox>
